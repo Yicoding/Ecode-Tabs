@@ -119,7 +119,7 @@ export default {
 	    total: 30, // 总数据条数
 	    selected: 10, // 每页显示的数据条数
 	    direction: 'ASC', // 正序
-    	properties: 'id', // 按ID排序
+    	properties: 'type_id', // 按ID排序
       dialogFormVisible: false,
       ruleForm: {
         id: null,
