@@ -73,6 +73,47 @@ router.delete('/type/site/:id', (req, res) => {
 		})
 	})
 })
+// site/like(模糊查询)
+router.get('/site/like', (req, res) => {
+	pool.getConnection((err, connection) => {
+		connection.query('select count(*) as nums from site where name like ' + '"%' + req.query.name + '%"' + ' or ' + 'site like ' + '"%' + req.query.name + '%"', (err, data, fields) => {
+			if (err) {
+				console.log(err)
+				res.status(500).send(err)
+			} else {
+				console.log(data)
+				var totalElements = data[0].nums
+				var totalPages = Math.ceil(totalElements/req.query.pageSize)
+				connection.query('select s.id, s.name, s.site, t.id as type_id, t.name as type_name from site s inner join type_site t on s.type_id=t.id where s.name like ' + '"%' + req.query.name + '%"' + ' or ' + 's.site like ' + '"%' + req.query.name + '%"' + ' order by ' + req.query.properties + ' ' + req.query.direction + ' limit ' + req.query.pageIndex*req.query.pageSize + ',' + req.query.pageSize, (error, result) => {
+					if (error) {
+						console.log(error)
+						res.status(500).send(error)
+					} else {
+						var content = []
+						for (var k = 0; k < result.length; k ++) {
+							var item = result[k]
+							content.push({
+								id: item.id,
+								name: item.name,
+								site: item.site,
+								type: {
+									id: item.type_id,
+									name: item.type_name
+								}
+							})
+						}
+						res.send({
+							totalElements: totalElements,
+							totalPages: totalPages,
+							content: content
+						})
+					}
+					connection.release();
+				})
+			}
+		})
+	})
+})
 
 // site
 // site/findAll
@@ -205,6 +246,5 @@ router.delete('/site/delete/:id', (req, res) => {
 		})
 	})
 })
-
 
 module.exports = router

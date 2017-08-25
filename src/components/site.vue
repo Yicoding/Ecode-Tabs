@@ -8,7 +8,10 @@
       <el-tag style="margin: 0 0 10px 10px; cursor: pointer;" :type="(checkId  == 0)?'primary':''"><span @click="checkId = 0">SelectAll</span></el-tag><el-tag :closable="true" @close="handleClose(tag.id)" style="margin: 0 0 10px 10px; cursor: pointer;" v-for="tag in tags" :key="tag.id" :type="(checkId  == tag.id)?'primary':''"><span @click="checkId = tag.id" v-text="tag.name"></span></el-tag> <el-button class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
     </div>
   	<div class="div-search">
-  		<el-button size="small" @click="add">新增</el-button>
+  		<el-button size="small" @click="add">新增</el-button> 
+      <div style="float: right; width: 230px;">
+        <el-input size="small" v-model="input" placeholder="请输入查询内容（站点名、网址）"></el-input>
+      </div>
   	</div>
     <!-- 模态框 -->
     <el-dialog title="枚举信息" :visible.sync="dialogFormVisible">
@@ -139,6 +142,7 @@ export default {
         ]
       },
       method: '',
+      input: '',
 		}
 	},
 	created () {
@@ -184,6 +188,21 @@ export default {
     }
 	},
 	methods: {
+    // 模糊查询
+    findByName() {
+      this.$http.get('/site/like', {params: {pageIndex: this.cur, pageSize: this.selected, direction: this.direction, properties: this.properties, name: this.input}}).then((res) => {
+        this.all = res.data.totalPages
+        this.total = res.data.totalElements
+        this.tableData = res.data.content
+        if (res.data.content.length == 0) {
+          this.$message({
+            showClose: true,
+            message: '没有找到符合条件的数据！',
+            type: 'info'
+          });
+        }
+      })
+    },
     // 站点跳转
     jump (value) {
       window.open(value)
@@ -402,11 +421,19 @@ export default {
 	},
 	watch: {
     cur () {
-      this.currentPageAll()
+      if (this.input) {
+        this.findByName()
+      } else {
+        this.currentPageAll()
+      }
     },
     selected () {
       this.cur = 0
-      this.currentPageAll()
+      if (this.input) {
+        this.findByName()
+      } else {
+        this.currentPageAll()
+      }
     },
     checkId (value) {
       this.cur = 0
@@ -424,7 +451,16 @@ export default {
           this.checkName = this.tags[k].name
         }
       }
-    }
+    },
+    input (value) {
+      if (value) {
+        this.cur = 0
+        console.log(value)
+        this.findByName()
+      } else {
+        this.resetAll()
+      }
+    },
   },
 }
 </script>
