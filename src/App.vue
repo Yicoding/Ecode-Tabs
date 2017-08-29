@@ -47,7 +47,7 @@
               <span class="icon-price-tags style-icon"></span>
               <div v-show="asidediv" class="menu-text">暂定管理</div>
             </el-menu-item>
-            <el-menu-item index="/childC"@click="toMenu('临时管理', 'childC')" style="padding-left: 20px;">
+            <el-menu-item index="/test/fromA" @click="toMenu('临时管理', 'test/fromA')" style="padding-left: 20px;">
               <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>临时管理</div>
               <span class="icon-road style-icon"></span>
               <div v-show="asidediv" class="menu-text">临时管理</div>
@@ -143,7 +143,7 @@ export default {
         {title: '系统用户', name: 'sysuser'},
         {title: '数据字典', name: 'type'},
         {title: '暂定管理', name: 'childB'},
-        {title: '临时管理', name: 'childC'},
+        {title: '临时管理', name: 'test/fromA'},
       ],
       editableTabsValue: 'site',
       asidediv: true,
@@ -239,6 +239,7 @@ export default {
     closeOther () {
       if (this.todos.length == 0) {
         console.log('当前处于index')
+        this.showMenu = false
       } else {
         if (this.targetTab == '站点管理') {
           this.editableTabsValue = 'site'

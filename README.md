@@ -12,6 +12,9 @@ npm install
 npm run dev
 
 ```
+# gif图
+![image](https://github.com/Yicoding/Ecode-Tabs/raw/master/src/assets/example.gif)
+
 # 效果图
 ![image](https://github.com/Yicoding/Ecode-Tabs/raw/master/src/assets/1.png)
 

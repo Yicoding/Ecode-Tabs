@@ -6,6 +6,8 @@ import sysuser from 'components/sysuser'
 import type from 'components/type'
 import childB from 'components/childB'
 import childC from 'components/childC'
+import fromA from 'components/fromA'
+import test from 'components/test'
 Vue.use(Router)
 
 export default new Router({
@@ -17,7 +19,21 @@ export default new Router({
     },
     {
       path: '/user',
-      component: user
+      component: user,
+    },
+    {
+      path: '/test',
+      component: test,
+      children: [
+        {
+          path: '/',
+          component: fromA
+        },
+        {
+          path: 'fromA',
+          component: fromA
+        }
+      ]
     },
     {
       path: '/sysuser',
