@@ -277,7 +277,7 @@ export default {
       this.cur = 0
       this.selected = 10
       this.direction = 'ASC'
-      this.properties = 'id'
+      this.properties = 'type_id'
       this.checkId = 0
       this.currentPageAll()
     },
