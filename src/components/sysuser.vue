@@ -237,26 +237,26 @@ export default {
     }
   },
   created () {
-    this.$http.get(this.resource + '/enum/typeId/1').then((result) => {
-      for (var k = 0; k < result.data.length; k ++) {
-        this.options.push({id: String(result.data[k].id), label: result.data[k].label})
-      }
-    })
-    this.refreshAll()
-    // 获取部门
-    this.$http.get(this.resource + '/dingtalk/listDeps').then((res) => {
-    	// this.data = res.data.department
-    	var todos = res.data.department
-    	for (var k = 0; k < todos.length; k ++) {
-    		// todos[k].label = todos[k].name
-    		if (!todos[k].parentid) {
-    			todos[k].parentid = 0
-    		}
-    	} 
-    	// console.log(JSON.stringify(todos))
-    	this.data = this.toTree(todos)
-      console.log(JSON.stringify(this.data))
-    })
+    // this.$http.get(this.resource + '/enum/typeId/1').then((result) => {
+    //   for (var k = 0; k < result.data.length; k ++) {
+    //     this.options.push({id: String(result.data[k].id), label: result.data[k].label})
+    //   }
+    // })
+    // this.refreshAll()
+    // // 获取部门
+    // this.$http.get(this.resource + '/dingtalk/listDeps').then((res) => {
+    // 	// this.data = res.data.department
+    // 	var todos = res.data.department
+    // 	for (var k = 0; k < todos.length; k ++) {
+    // 		// todos[k].label = todos[k].name
+    // 		if (!todos[k].parentid) {
+    // 			todos[k].parentid = 0
+    // 		}
+    // 	} 
+    // 	// console.log(JSON.stringify(todos))
+    // 	this.data = this.toTree(todos)
+    //   console.log(JSON.stringify(this.data))
+    // })
   },
   computed: {
     indexs () {

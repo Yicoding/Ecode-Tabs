@@ -231,15 +231,15 @@ export default {
     }
   },
   created () {
-    this.$http.get(this.resource + '/enum/typeId/1').then((result) => {
-      for (var k in result.data) {
-        // this.options.push({id: String(result.data[k].id), label: result.data[k].label})
-        if (result.data[k].value == 'promoter') {
-          this.role_id = result.data[k].id
-        }
-      }
-    })
-    this.refreshAll()
+    // this.$http.get(this.resource + '/enum/typeId/1').then((result) => {
+    //   for (var k in result.data) {
+    //     // this.options.push({id: String(result.data[k].id), label: result.data[k].label})
+    //     if (result.data[k].value == 'promoter') {
+    //       this.role_id = result.data[k].id
+    //     }
+    //   }
+    // })
+    // this.refreshAll()
   },
   computed: {
     indexs () {

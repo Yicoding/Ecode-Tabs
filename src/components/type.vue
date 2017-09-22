@@ -104,11 +104,11 @@ export default {
   	// 	}
   	// 	this.ruleForm.name = res.data[0]
   	// })
-    this.$http.get(this.resource + '/enumType/all', {params: {pageIndex: 0, pageSize: 99999}}).then((res) => {
-      this.tags = res.data.content
-      this.ruleForm.type.name = res.data.content[0].name
-      this.selectTag(res.data.content[0].id, res.data.content[0].name)
-    })
+    // this.$http.get(this.resource + '/enumType/all', {params: {pageIndex: 0, pageSize: 99999}}).then((res) => {
+    //   this.tags = res.data.content
+    //   this.ruleForm.type.name = res.data.content[0].name
+    //   this.selectTag(res.data.content[0].id, res.data.content[0].name)
+    // })
   },
   methods: {
     // 查询所有类型
