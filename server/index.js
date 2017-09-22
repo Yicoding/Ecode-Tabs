@@ -15,8 +15,10 @@
 
 
 var express = require('express');
+var cors = require('cors');
 var app = express();
- 
+app.use(cors())
+
 // 站点查询
 var site = require('./site')
 app.use(site)
