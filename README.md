@@ -1,6 +1,6 @@
 # Ecode-Tabs
 
-> All kinds of tabs about js
+> All kinds of tabs about js(dev and master branch)
 
 ## Build Setup
 
