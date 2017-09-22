@@ -5,12 +5,17 @@
 ## Build Setup
 
 ``` bash
+# 数据库
+将server目录下的tabs.sql导入到数据库
+
 # install dependencies
 npm install
 
+# 服务端
+命令行进入server目录，执行node index.js
+
 # serve with hot reload at localhost:2000
 npm run dev
-
 ```
 # gif图
 ![image](https://github.com/Yicoding/Ecode-Tabs/raw/master/src/assets/example.gif)
