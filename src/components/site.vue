@@ -190,7 +190,7 @@ export default {
 	methods: {
     // 模糊查询
     findByName() {
-      this.$http.get('/site/like', {params: {pageIndex: this.cur, pageSize: this.selected, direction: this.direction, properties: this.properties, name: this.input}}).then((res) => {
+      this.$http.get('/api/site/like', {params: {pageIndex: this.cur, pageSize: this.selected, direction: this.direction, properties: this.properties, name: this.input}}).then((res) => {
         this.all = res.data.totalPages
         this.total = res.data.totalElements
         this.tableData = res.data.content
@@ -209,7 +209,7 @@ export default {
     },
     // 查询类型
     tagAll () {
-      this.$http.get('/type/site/findAll').then((res) => {
+      this.$http.get('/api/type/site/findAll').then((res) => {
         console.log(JSON.stringify(res.data))
         this.tags = res.data
         this.options = []
@@ -227,7 +227,7 @@ export default {
         inputPattern: /^.[A-Za-z]+$/,
         inputErrorMessage: '只能输入纯英文'
       }).then(({ value }) => {
-        this.$http.post('/type/site/add', {name: value}).then((response) => {
+        this.$http.post('/api/type/site/add', {name: value}).then((response) => {
           this.tagAll()
           this.checkId = response.data.id
           this.checkName = response.data.name
@@ -250,7 +250,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$http.delete('/type/site/' + value).then((response) => {
+        this.$http.delete('/api/type/site/' + value).then((response) => {
           this.$message({
             showClose: true,
             message: '恭喜你，删除成功',
@@ -289,7 +289,7 @@ export default {
     },
   	// 刷新当前页数据
   	currentPageAll () {
-      this.$http.get('/site/findAll', {params: {pageIndex: this.cur, pageSize: this.selected, direction: this.direction, properties: this.properties, checkId: this.checkId}}).then((response) => {
+      this.$http.get('/api/site/findAll', {params: {pageIndex: this.cur, pageSize: this.selected, direction: this.direction, properties: this.properties, checkId: this.checkId}}).then((response) => {
         console.log(JSON.stringify(response.data))
         this.all = response.data.totalPages
         this.total = response.data.totalElements
@@ -319,7 +319,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           if (this.method == 'post') {
-            this.$http.post('/site/add', this.ruleForm).then((res) => {
+            this.$http.post('/api/site/add', this.ruleForm).then((res) => {
               console.log(JSON.stringify(res.data))
               this.dialogFormVisible = false
               this.$message({
@@ -337,7 +337,7 @@ export default {
               });
             })
           } else {
-            this.$http.put('/site/put', this.ruleForm).then((res) => {
+            this.$http.put('/api/site/put', this.ruleForm).then((res) => {
               console.log(JSON.stringify(res.data))
               this.dialogFormVisible = false
               this.$message({
@@ -374,7 +374,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$http.delete('/site/delete/' + value).then((res) => {
+        this.$http.delete('/api/site/delete/' + value).then((res) => {
           this.$message({
             showClose: true,
             message: '恭喜你，删除成功',

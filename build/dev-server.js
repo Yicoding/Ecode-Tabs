@@ -22,9 +22,9 @@ var proxyTable = config.dev.proxyTable
 
 var app = express()
 
-// 使用路由
-var server = require('../server/index')
-app.use(server)
+// // 使用路由
+// var server = require('../server/index')
+// app.use(server)
 
 
 var compiler = webpack(webpackConfig)
