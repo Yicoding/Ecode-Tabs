@@ -19,38 +19,38 @@
           <el-submenu index="1">
             <template slot="title">
               <span v-show="asidediv" class="icon-users style-icon"></span>
-              <div v-show="asidediv" class="menu-text">用户管理</div>
+              <div v-show="asidediv" class="menu-text">娱乐管理</div>
             </template>
-            <el-menu-item index="/user" @click="toMenu('促销员', 'user')" style="padding-left: 20px;">
-              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>促销员</div>
+            <el-menu-item index="/user" @click="toMenu('电影分类', 'user')" style="padding-left: 20px;">
+              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>电影分类</div>
               <span class="icon-accessibility style-icon"></span>
-              <div v-show="asidediv" class="menu-text">促销员</div>
+              <div v-show="asidediv" class="menu-text">电影分类</div>
             </el-menu-item>
-            <el-menu-item index="/sysuser" @click="toMenu('系统用户', 'sysuser')" style="padding-left: 20px;">
-              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>系统用户</div>
+            <el-menu-item index="/sysuser" @click="toMenu('音乐分类', 'sysuser')" style="padding-left: 20px;">
+              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>音乐分类</div>
               <span class="icon-user style-icon"></span>
-              <div v-show="asidediv" class="menu-text">系统用户</div>
+              <div v-show="asidediv" class="menu-text">音乐分类</div>
             </el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
               <span v-show="asidediv" class="icon-cog style-icon"></span>
-              <div v-show="asidediv" class="menu-text">系统管理</div>
+              <div v-show="asidediv" class="menu-text">个人爱好</div>
             </template>
-            <el-menu-item index="/type" @click="toMenu('数据字典', 'type')" style="padding-left: 20px;">
-              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>数据字典</div>
+            <el-menu-item index="/type" @click="toMenu('书籍分类', 'type')" style="padding-left: 20px;">
+              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>书籍分类</div>
               <span class="icon-books style-icon"></span>
-              <div v-show="asidediv" class="menu-text">数据字典</div>
+              <div v-show="asidediv" class="menu-text">书籍分类</div>
             </el-menu-item>
-            <el-menu-item index="/childB" @click="toMenu('暂定管理', 'childB')" style="padding-left: 20px;">
-              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>暂定管理</div>
+            <el-menu-item index="/childB" @click="toMenu('球类运动', 'childB')" style="padding-left: 20px;">
+              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>球类运动</div>
               <span class="icon-price-tags style-icon"></span>
-              <div v-show="asidediv" class="menu-text">暂定管理</div>
+              <div v-show="asidediv" class="menu-text">球类运动</div>
             </el-menu-item>
-            <el-menu-item index="/test/fromA" @click="toMenu('临时管理', 'test/fromA')" style="padding-left: 20px;">
-              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>临时管理</div>
+            <el-menu-item index="/test/fromA" @click="toMenu('爱车之旅', 'test/fromA')" style="padding-left: 20px;">
+              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>爱车之旅</div>
               <span class="icon-road style-icon"></span>
-              <div v-show="asidediv" class="menu-text">临时管理</div>
+              <div v-show="asidediv" class="menu-text">爱车之旅</div>
             </el-menu-item>
           </el-submenu>
         </el-menu>
@@ -139,11 +139,11 @@ export default {
       todos: [],
       tabArr: [
         {title: '站点管理', name: 'site'},
-        {title: '促销员', name: 'user'},
-        {title: '系统用户', name: 'sysuser'},
-        {title: '数据字典', name: 'type'},
-        {title: '暂定管理', name: 'childB'},
-        {title: '临时管理', name: 'test/fromA'},
+        {title: '电影分类', name: 'user'},
+        {title: '音乐分类', name: 'sysuser'},
+        {title: '书籍分类', name: 'type'},
+        {title: '球类运动', name: 'childB'},
+        {title: '爱车之旅', name: 'test/fromA'},
       ],
       editableTabsValue: 'site',
       asidediv: true,
