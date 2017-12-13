@@ -8,9 +8,9 @@
       <el-tag style="margin: 0 0 10px 10px; cursor: pointer;" :type="(checkId  == 0)?'primary':''"><span @click="checkId = 0">SelectAll</span></el-tag><el-tag :closable="true" @close="handleClose(tag.id)" style="margin: 0 0 10px 10px; cursor: pointer;" v-for="tag in tags" :key="tag.id" :type="(checkId  == tag.id)?'primary':''"><span @click="checkId = tag.id" v-text="tag.name"></span></el-tag> <el-button class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
     </div>
   	<div class="div-search">
-  		<el-button size="small" @click="add">新增</el-button> 
-      <div style="float: right; width: 230px;">
-        <el-input size="small" v-model="input" placeholder="请输入查询内容（站点名、网址）"></el-input>
+  		<el-button size="small" @click="add" icon="plus">新增</el-button> 
+      <div style="float: right; width: 243px;">
+        <el-input size="small" v-model="input" placeholder="请输入查询内容（站点名、网址）" icon="search"></el-input>
       </div>
   	</div>
     <!-- 模态框 -->

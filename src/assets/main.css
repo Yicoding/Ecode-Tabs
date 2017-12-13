@@ -349,5 +349,13 @@ section {
 #imgTranform {
   max-width: 75%;
 }
+/*element卡片*/
+.text {
+  font-size: 14px;
+}
+
+.item {
+  padding: 18px 0;
+}
 
 

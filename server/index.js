@@ -1,32 +1,22 @@
-// var express = require('express')
-// var router = express.Router()
-
-// router.use((req, res, next) => {
-// 	res.setHeader('Access-Control-Allow-Origin', '*')
-// 	next()
-// })
-
-// // 站点查询
-// var site = require('./site')
-// router.use(site)
-
-// module.exports = router
-
-
-
-var express = require('express');
-var cors = require('cors');
-var app = express();
+let express = require('express');
+let cors = require('cors');
+let app = express();
 app.use(cors())
 
 // 站点查询
-var site = require('./site')
+let site = require('./site')
 app.use(site)
+// 前端管理
+let test = require('./test')
+app.use(test)
+// 文本编辑
+let edit = require('./edit')
+app.use(edit)
+
+let server = app.listen(3000, function () {
  
-var server = app.listen(3000, function () {
- 
-  var host = server.address().address
-  var port = server.address().port
+  let host = server.address().address
+  let port = server.address().port
  
   console.log("应用实例，访问地址为 http://%s:%s", host, port)
  

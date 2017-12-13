@@ -19,17 +19,17 @@
           <el-submenu index="1">
             <template slot="title">
               <span v-show="asidediv" class="icon-users style-icon"></span>
-              <div v-show="asidediv" class="menu-text">娱乐管理</div>
+              <div v-show="asidediv" class="menu-text">知识库</div>
             </template>
-            <el-menu-item index="/user" @click="toMenu('电影分类', 'user')" style="padding-left: 20px;">
-              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>电影分类</div>
+            <el-menu-item index="/user" @click="toMenu('前端管理', 'user')" style="padding-left: 20px;">
+              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>前端管理</div>
               <span class="icon-accessibility style-icon"></span>
-              <div v-show="asidediv" class="menu-text">电影分类</div>
+              <div v-show="asidediv" class="menu-text">前端管理</div>
             </el-menu-item>
-            <el-menu-item index="/sysuser" @click="toMenu('音乐分类', 'sysuser')" style="padding-left: 20px;">
-              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>音乐分类</div>
+            <el-menu-item index="/sysuser" @click="toMenu('文本编辑', 'sysuser')" style="padding-left: 20px;">
+              <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f"></i>文本编辑</div>
               <span class="icon-user style-icon"></span>
-              <div v-show="asidediv" class="menu-text">音乐分类</div>
+              <div v-show="asidediv" class="menu-text">文本编辑</div>
             </el-menu-item>
           </el-submenu>
           <el-submenu index="2">
@@ -139,8 +139,8 @@ export default {
       todos: [],
       tabArr: [
         {title: '站点管理', name: 'site'},
-        {title: '电影分类', name: 'user'},
-        {title: '音乐分类', name: 'sysuser'},
+        {title: '前端管理', name: 'user'},
+        {title: '文本编辑', name: 'sysuser'},
         {title: '书籍分类', name: 'type'},
         {title: '球类运动', name: 'childB'},
         {title: '爱车之旅', name: 'test/fromA'},

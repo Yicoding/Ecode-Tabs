@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import site from 'components/site'
 import user from 'components/user'
+import testdetail from 'components/testdetail'
 import sysuser from 'components/sysuser'
+import edit from 'components/edit'
 import type from 'components/type'
 import childB from 'components/childB'
 import childC from 'components/childC'
@@ -22,6 +24,18 @@ export default new Router({
       component: user,
     },
     {
+      path: '/testdetail/:id',
+      component: testdetail,
+    },
+    {
+      path: '/sysuser',
+      component: sysuser
+    },
+    {
+      path: '/edit/:id',
+      component: edit
+    },
+    {
       path: '/test',
       component: test,
       children: [
@@ -34,10 +48,6 @@ export default new Router({
           component: fromA
         }
       ]
-    },
-    {
-      path: '/sysuser',
-      component: sysuser
     },
     {
       path: '/type',
