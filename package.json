@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "better-scroll": "^1.4.1",
     "body-parser": "^1.17.2",
     "connect-multiparty": "^2.1.0",
     "cors": "^2.8.4",

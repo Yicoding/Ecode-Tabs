@@ -10,7 +10,6 @@ import ElementUI from 'element-ui'
 Vue.use(ElementUI)
 Vue.prototype.$http = axios
 Vue.prototype.resource = 'http://localhost:3000'
-// Vue.prototype.resource = 'http://starding.stardrin.com/resource'
 Vue.config.productionTip = false
 // 图标
 import 'assets/style.css'
