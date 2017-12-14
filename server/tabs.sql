@@ -16,6 +16,55 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `edit`
+--
+
+DROP TABLE IF EXISTS `edit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `edit` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `edit`
+--
+
+LOCK TABLES `edit` WRITE;
+/*!40000 ALTER TABLE `edit` DISABLE KEYS */;
+INSERT INTO `edit` VALUES (4,'测试'),(6,'demo');
+/*!40000 ALTER TABLE `edit` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `editcontent`
+--
+
+DROP TABLE IF EXISTS `editcontent`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `editcontent` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `content` longtext,
+  `edit_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `editcontent`
+--
+
+LOCK TABLES `editcontent` WRITE;
+/*!40000 ALTER TABLE `editcontent` DISABLE KEYS */;
+INSERT INTO `editcontent` VALUES (4,'<p>呕心沥血，这照片终于可以上传了</p><p><br></p><p><img style=\"max-width:100%;\" style=\"max-width:100%;\" src=\"static/img/1513177605902oo.png\"></p><p><img style=\"max-width:100%;\" style=\"max-width:100%;\" src=\"static/img/1513177699609null5c45cb615341b156.jpg\"></p><p><img style=\"max-width:100%;\" src=\"static/img/1513177730411login.gif\"></p>',4),(6,'<p>图片11<img style=\"max-width:100%;\" src=\"static/img/1513178095515oo.png\"></p><p><br></p><p><img style=\"max-width:100%;\" src=\"static/img/1513178080903null5c45cb615341b156.jpg\"></p>',6);
+/*!40000 ALTER TABLE `editcontent` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `site`
 --
 
@@ -42,6 +91,32 @@ INSERT INTO `site` VALUES (1,'Vue官网','https://cn.vuejs.org/v2/guide/',1),(2,
 UNLOCK TABLES;
 
 --
+-- Table structure for table `test`
+--
+
+DROP TABLE IF EXISTS `test`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `test` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(9999) DEFAULT NULL,
+  `content` mediumtext,
+  `test_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test`
+--
+
+LOCK TABLES `test` WRITE;
+/*!40000 ALTER TABLE `test` DISABLE KEYS */;
+INSERT INTO `test` VALUES (1,'num ++ 跟 ++ num的区别','一个是先运算，一个是先加值',1),(10,'什么是闭包？','答案一：<br/>\n闭包就是能够读取其他函数内部变量的函数。<br/>\n由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成“定义在一个函数内部的函数”。<br/>\n所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。<br/>\n答案二：<br/>\n当内部函数 在定义它的作用域 的外部 被引用时,就创建了该内部函数的闭包 ,如果内部函数引用了位于外部函数的变量,当外部函数调用完毕后,这些变量在内存不会被 释放,因为闭包需要它们.',1),(11,'闭包的用途？','它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中。',1),(12,'使用闭包应注意的点？','1）由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。<br/>\n2）闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。',1),(13,'什么是JavaScript 代码块？','块由左花括号开始，由右花括号结束。<br/>\n块的作用是使语句序列一起执行。<br/>\nJavaScript 函数是将语句组合在块中的典型例子。<br/>',1),(14,'css新特性？','平移、旋转、多背景图',7);
+/*!40000 ALTER TABLE `test` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `type_site`
 --
 
@@ -52,7 +127,7 @@ CREATE TABLE `type_site` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,6 +138,30 @@ LOCK TABLES `type_site` WRITE;
 /*!40000 ALTER TABLE `type_site` DISABLE KEYS */;
 INSERT INTO `type_site` VALUES (1,'vue'),(2,'echarts'),(3,'react'),(7,'website'),(8,'map'),(9,'other'),(10,'nodejs'),(11,'js'),(12,'database'),(13,'html'),(14,'ui');
 /*!40000 ALTER TABLE `type_site` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `type_test`
+--
+
+DROP TABLE IF EXISTS `type_test`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `type_test` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `type_test`
+--
+
+LOCK TABLES `type_test` WRITE;
+/*!40000 ALTER TABLE `type_test` DISABLE KEYS */;
+INSERT INTO `type_test` VALUES (1,'原生js'),(6,'html'),(7,'css');
+/*!40000 ALTER TABLE `type_test` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -78,4 +177,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-22 14:25:29
+-- Dump completed on 2017-12-14 11:40:32
