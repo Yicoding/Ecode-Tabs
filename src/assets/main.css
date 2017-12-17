@@ -357,5 +357,9 @@ section {
 .item {
   padding: 18px 0;
 }
-
+.none {
+  width: 0px; 
+  height: 0px; 
+  display: none; 
+}
 

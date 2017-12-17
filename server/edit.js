@@ -22,6 +22,46 @@ router.get('/edit/findAll', (req, res) => {
 		})
 	})
 })
+// 查看demo
+router.get('/edit/checkFile', (req, res) => {
+	// console.log('./' + req.query.demo)
+	res.sendFile(__dirname + '/' + req.query.demo)
+	// res.sendFile(req.query.demo)
+})
+// 文本列表上传demo
+router.post('/edit/upload', multipartMiddleware, function (req, res) {
+  let nowDate = new Date();
+  console.log(req.files.file);  // 上传的文件信息
+
+  var des_file = "file/" + nowDate.getTime() + req.files.file.originalFilename;
+  fs.readFile( req.files.file.path, function (err, data) {
+    fs.writeFile(des_file, data, function (err) {
+      if( err ){
+        console.log( err );
+      } else {
+        response = {
+          message:'File uploaded successfully', 
+          filename:nowDate.getTime() + req.files.file.originalFilename
+        };
+      }
+      console.log( response.filename );
+      // res.status(200).send({filename: response.filename});
+      var sql = 'update edit set demo=? where id=?'
+      let src = 'file/' + response.filename
+      pool.getConnection(function(err, connection) {
+		connection.query(sql, [src, req.body.id], (err, data) => {
+			if (err) {
+				res.status(500).send(err)
+			} else {
+				res.send(data)
+				console.log(data)
+			}
+			connection.release();
+		})
+	  })
+    });
+  });
+})
 // edit/add
 router.post('/edit/add', (req, res) => {
 	var sql = 'insert into edit values(null, ?)'
