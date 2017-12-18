@@ -25,8 +25,8 @@
         <el-button type="text" v-text="item.name" @click="jump(item.id)"></el-button>
         <el-button style="float: right;" size="small" :plain="true" icon="delete" type="danger" @click="remove(item.id)">remove</el-button>
         <el-button style="float: right;" size="small" :plain="true" icon="edit" type="warning" @click="edit(item)">edit</el-button>
-        <el-button style="float: right;" size="small" :plain="true" icon="document" type="warning" @click="check(item)" v-if="item.demo">查看demo</el-button>
-        <el-button style="float: right;" size="small" :plain="true" icon="upload" type="warning" @click="upload(item)">上传demo</el-button>
+        <el-button style="float: right;" size="small" :plain="true" icon="document" @click="check(item)" v-if="item.demo">查看demo</el-button>
+        <el-button style="float: right;" size="small" :plain="true" icon="upload" type="primary" @click="upload(item)">上传demo</el-button>
       </div>
     </el-card>
   </div>

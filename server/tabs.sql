@@ -24,7 +24,8 @@ DROP TABLE IF EXISTS `edit`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `edit` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `demo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -35,7 +36,7 @@ CREATE TABLE `edit` (
 
 LOCK TABLES `edit` WRITE;
 /*!40000 ALTER TABLE `edit` DISABLE KEYS */;
-INSERT INTO `edit` VALUES (4,'测试'),(6,'demo');
+INSERT INTO `edit` VALUES (4,'测试','file/1513518874144canvas验证码.html'),(6,'demo','file/1513518878484tencentMap lat.html');
 /*!40000 ALTER TABLE `edit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,4 +178,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-14 11:40:32
+-- Dump completed on 2017-12-18 11:59:16
