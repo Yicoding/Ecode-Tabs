@@ -55,7 +55,7 @@
         prop="name"
         sortable="custom"
         label="站点名" min-width="120">
-        <template scope="scope">
+        <template slot-scope="scope">
           <el-button type="text" size="small" @click="jump(scope.row.site)">{{scope.row.name}}</el-button>
         </template>
       </el-table-column>
@@ -63,7 +63,7 @@
 	      label="网址" min-width="300"
         sortable="custom"
         prop="site">
-	      <template scope="scope">
+	      <template slot-scope="scope">
           <el-button type="text" size="small" @click="jump(scope.row.site)">{{scope.row.site}}</el-button>
         </template>
 	    </el-table-column>
@@ -73,7 +73,7 @@
 	      label="类型" min-width="120">
 	    </el-table-column>
 	    <el-table-column label="操作" width="150">
-	      <template scope="scope">
+	      <template slot-scope="scope">
           <el-button size="small" @click="edit(scope.row)">编辑</el-button>
 	        <el-button
 	          size="small"
