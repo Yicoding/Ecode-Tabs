@@ -2,8 +2,8 @@
   <div class="project-box">
   	<el-card class="box-card">
       <div slot="header" class="clearfix">
-        <el-button size="small" icon="edit" :plain="true" type="warning" @click="isEdit = true" v-show="!isEdit">编辑</el-button>
-        <el-button style="float: right;" size="small" icon="arrow-left" @click="$router.go(-1)">返回到文本编辑列表</el-button>
+        <el-button size="small" icon="el-icon-edit" :plain="true" type="warning" @click="isEdit = true" v-show="!isEdit">编辑</el-button>
+        <el-button style="float: right;" size="small" icon="el-icon-arrow-left" @click="$router.go(-1)">返回到文本编辑列表</el-button>
       </div>
       <div class="text item">
         <div v-html="content" v-show="!isEdit"></div>

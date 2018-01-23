@@ -19,14 +19,14 @@
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span style="line-height: 36px;">文本列表</span>
-        <el-button style="float: right;" type="primary" size="small" icon="plus" @click="add">新增</el-button>
+        <el-button style="float: right;" type="primary" size="small" icon="el-icon-plus" @click="add">新增</el-button>
       </div>
       <div v-for="item in testArr" :key="item.id" class="text item" style="border-bottom: 1px solid #eee;">
         <el-button type="text" v-text="item.name" @click="jump(item.id)"></el-button>
-        <el-button style="float: right;" size="small" :plain="true" icon="delete" type="danger" @click="remove(item.id)">remove</el-button>
-        <el-button style="float: right;" size="small" :plain="true" icon="edit" type="warning" @click="edit(item)">edit</el-button>
-        <el-button style="float: right;" size="small" :plain="true" icon="document" @click="check(item)" v-if="item.demo">查看demo</el-button>
-        <el-button style="float: right;" size="small" :plain="true" icon="upload" type="primary" @click="upload(item)">上传demo</el-button>
+        <el-button style="float: right;" size="small" :plain="true" icon="el-icon-delete" type="danger" @click="remove(item.id)">remove</el-button>
+        <el-button style="float: right;" size="small" :plain="true" icon="el-icon-edit" type="warning" @click="edit(item)">edit</el-button>
+        <el-button style="float: right;" size="small" :plain="true" icon="el-icon-document" @click="check(item)" v-if="item.demo">查看demo</el-button>
+        <el-button style="float: right;" size="small" :plain="true" icon="el-icon-upload" type="primary" @click="upload(item)">上传demo</el-button>
       </div>
     </el-card>
   </div>

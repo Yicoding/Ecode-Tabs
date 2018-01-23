@@ -17,14 +17,14 @@
     <el-card class="box-card">
       <div slot="header" class="clearfix">
           <span style="line-height: 36px;">详情</span>
-          <el-button style="float: right;" size="small" icon="arrow-left" @click="$router.go(-1)">返回到前端列表</el-button>
+          <el-button style="float: right;" size="small" icon="el-icon-arrow-left" @click="$router.go(-1)">返回到前端列表</el-button>
       </div>
-      <el-button size="small" icon="plus" @click="add">新增条目</el-button>
+      <el-button size="small" icon="el-icon-plus" @click="add">新增条目</el-button>
       <div class="div-top"></div>
         <div class="text item" v-for="(item, index) in arrData" :key="item.id">
           <h3>{{index + 1}}. {{item.title}} 
-          <el-button icon="edit" size="small" type="primary" @click="edit(item)"></el-button>
-          <el-button icon="delete" size="small" type="danger" @click="remove(item.id)"></el-button></h3>
+          <el-button icon="el-icon-edit" size="small" type="primary" @click="edit(item)"></el-button>
+          <el-button icon="el-icon-delete" size="small" type="danger" @click="remove(item.id)"></el-button></h3>
           <div style="height: 15px;"></div>
           <p v-html="item.content"></p>
         </div>

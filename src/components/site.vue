@@ -1,16 +1,16 @@
 <template>
   <div id="main">
   	<div class="div-title">
-  		站点列表&nbsp;&nbsp;<el-button type="primary" @click="resetAll" size="mini">刷新</el-button>
+  		站点列表&nbsp;&nbsp;<el-button type="primary" @click="resetAll" size="mini" icon="el-icon-refresh">刷新</el-button>
   	</div>
     <div class="div-top">
       <el-button type="text" style="cursor: text;">请选择查看类型：</el-button>
-      <el-tag style="margin: 0 0 10px 10px; cursor: pointer;" :type="(checkId  == 0)?'primary':''"><span @click="checkId = 0">SelectAll</span></el-tag><el-tag :closable="true" @close="handleClose(tag.id)" style="margin: 0 0 10px 10px; cursor: pointer;" v-for="tag in tags" :key="tag.id" :type="(checkId  == tag.id)?'primary':''"><span @click="checkId = tag.id" v-text="tag.name"></span></el-tag> <el-button class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
+      <el-tag style="margin: 0 0 10px 10px; cursor: pointer;" :type="(checkId  == 0)?'':'info'"><span @click="checkId = 0">SelectAll</span></el-tag><el-tag :closable="true" @close="handleClose(tag.id)" style="margin: 0 0 10px 10px; cursor: pointer;" v-for="tag in tags" :key="tag.id" :type="(checkId  == tag.id)?'':'info'"><span @click="checkId = tag.id" v-text="tag.name"></span></el-tag> <el-button class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
     </div>
   	<div class="div-search">
-  		<el-button size="small" @click="add" icon="plus">新增</el-button> 
+  		<el-button size="small" @click="add" icon="el-icon-plus">新增</el-button> 
       <div style="float: right; width: 243px;">
-        <el-input size="small" v-model="input" placeholder="请输入查询内容（站点名、网址）" icon="search"></el-input>
+        <el-input size="small" v-model="input" placeholder="请输入查询内容（站点名、网址）" suffix-icon="el-icon-search"></el-input>
       </div>
   	</div>
     <!-- 模态框 -->
@@ -72,13 +72,13 @@
         sortable="custom"
 	      label="类型" min-width="120">
 	    </el-table-column>
-	    <el-table-column label="操作" width="150">
+	    <el-table-column label="操作" width="200">
 	      <template slot-scope="scope">
-          <el-button size="small" @click="edit(scope.row)">编辑</el-button>
+          <el-button size="small" @click="edit(scope.row)" icon="el-icon-edit">编辑</el-button>
 	        <el-button
 	          size="small"
 	          type="danger"
-	          @click="handleDelete(scope.row.id)">删除</el-button>
+	          @click="handleDelete(scope.row.id)" icon="el-icon-delete">删除</el-button>
 	      </template>
 	    </el-table-column>
     </el-table>

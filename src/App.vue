@@ -2,7 +2,7 @@
   <div style="height: 100%;">
     <aside>
       <el-col>
-        <div @click="hideaside" style="background:#4A5064;height: 30px;">
+        <div @click="hideaside" style="rgb(101, 110, 120);height: 30px;">
           <div style="position: absolute; left: 75px; top: 4px;" v-show="asidediv">
             <span v-show="asidediv" class="icon-menu div-off"></span>
           </div>
@@ -10,7 +10,7 @@
             <span v-show="!asidediv" class="icon-menu div-off"></span>
           </div>
         </div>
-        <el-menu :default-active="$route.path" class="el-menu-vertical-demo" theme="dark">
+        <el-menu :default-active="$route.path" class="el-menu-vertical-demo" background-color="#545c64" text-color="#bfcbd9" active-text-color="#ffd04b">
           <el-menu-item index="/site" @click="toIndex">
             <div :class="(asidediv)?'hide':'div-hover'"><i class="el-icon-caret-left" style="position: absolute;top: 20px;left: -12px; color: #53616f;"></i>站点管理</div>
             <span class="icon-home style-icon"></span>
@@ -364,6 +364,6 @@ export default {
 }
 </script>
 
-<style lang="stylus" style="stylesheet/stylus">
+<style>
 
 </style>
