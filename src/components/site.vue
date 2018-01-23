@@ -5,7 +5,7 @@
   	</div>
     <div class="div-top">
       <el-button type="text" style="cursor: text;">请选择查看类型：</el-button>
-      <el-tag style="margin: 0 0 10px 10px; cursor: pointer;" :type="(checkId  == 0)?'':'info'"><span @click="checkId = 0">SelectAll</span></el-tag><el-tag :closable="true" @close="handleClose(tag.id)" style="margin: 0 0 10px 10px; cursor: pointer;" v-for="tag in tags" :key="tag.id" :type="(checkId  == tag.id)?'':'info'"><span @click="checkId = tag.id" v-text="tag.name"></span></el-tag> <el-button class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
+      <el-tag style="margin: 0 0 10px 10px; cursor: pointer;" :type="(checkId  == 0)?'':'info'" @click.native="checkId = 0"><span>SelectAll</span></el-tag><el-tag :closable="true" @close="handleClose(tag.id)" style="margin: 0 0 10px 10px; cursor: pointer;" v-for="tag in tags" :key="tag.id" :type="(checkId  == tag.id)?'':'info'" @click.native="checkId = tag.id"><span v-text="tag.name"></span></el-tag> <el-button class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
     </div>
   	<div class="div-search">
   		<el-button size="small" @click="add" icon="el-icon-plus">新增</el-button> 
