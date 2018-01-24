@@ -1,17 +1,11 @@
 <template>
   <div>
-  	{{msg}}
+  	I am book
   </div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      msg: 'I am index'
-    }
-  }
-}
+export default {}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

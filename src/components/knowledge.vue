@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-dialog title="提示" :visible.sync="dialogFormVisible" size="tiny">
+    <el-dialog title="提示" :visible.sync="dialogFormVisible" width="40%" :modal="false">
       <el-form :model="form" ref="form" :rules="rules">
         <el-form-item label="试卷名" prop="name">
           <el-input v-model="form.name" auto-complete="off"></el-input>
@@ -60,7 +60,7 @@ export default {
         })
       },
       jump (id) {
-        this.$router.push('/testdetail/' + id)
+        this.$router.push('/knowledgeDetail/' + id)
       },
       add () {
         this.dialogFormVisible = true

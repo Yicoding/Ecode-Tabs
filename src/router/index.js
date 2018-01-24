@@ -1,66 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import site from 'components/site'
-import user from 'components/user'
-import testdetail from 'components/testdetail'
-import sysuser from 'components/sysuser'
+import knowledge from 'components/knowledge'
+import knowledgeDetail from 'components/knowledge-detail'
+import text from 'components/text'
 import edit from 'components/edit'
-import type from 'components/type'
-import childB from 'components/childB'
-import childC from 'components/childC'
-import fromA from 'components/fromA'
-import test from 'components/test'
+import book from 'components/book'
+import ball from 'components/ball'
+import car from 'components/car'
 Vue.use(Router)
 
 export default new Router({
   // mode: 'history',
   routes: [
-    {
-      path: '/site',
-      component: site
-    },
-    {
-      path: '/user',
-      component: user,
-    },
-    {
-      path: '/testdetail/:id',
-      component: testdetail,
-    },
-    {
-      path: '/sysuser',
-      component: sysuser
-    },
-    {
-      path: '/edit/:id',
-      component: edit
-    },
-    {
-      path: '/test',
-      component: test,
-      children: [
-        {
-          path: '/',
-          component: fromA
-        },
-        {
-          path: 'fromA',
-          component: fromA
-        }
-      ]
-    },
-    {
-      path: '/type',
-      component: type
-    },
-    {
-      path: '/childB',
-      component: childB
-    },
-    {
-      path: '/childC',
-      component: childC
-    },
+    { path: '/site', component: site },
+    { path: '/knowledge', component: knowledge },
+    { path: '/knowledgeDetail/:id', component: knowledgeDetail },
+    { path: '/text', component: text },
+    { path: '/edit/:id', component: edit },
+    { path: '/book', component: book },
+    { path: '/ball', component: ball },
+    { path: '/car', component:  car },
     { path: '*', redirect: '/site'}
   ]
 })

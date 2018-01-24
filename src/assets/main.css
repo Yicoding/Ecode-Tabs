@@ -1,13 +1,9 @@
 /*common*/
-html {
-  height: 100%;
-}
 body {
     font:17px "microsoft yahei",Arial,Helvetica,sans-serif;
     color:#000000;
     margin:0;
     padding:0;
-    height: 100%;
     overflow: hidden;
 }
 
@@ -54,24 +50,52 @@ img {
 
 /*self*/
 aside {
-  height: 100%;
-  float: left;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
   background: #545c64;
 }
 header {
-  height: 60px;
+  height: 110px;
   background: #eef1f6;
+  position: fixed;
+  left: 200px;
+  right: 0;
+  top: 0;
 }
 section {
-  overflow: auto;
-  height: 100%;
-  margin-top: 45px;
+  position: fixed;
+  top: 110px;
+  left: 200px;
+  right: 0;
+  bottom: 20px;
 }
 .section {
-  margin: 10px 10px 110px;
+  height: 100%;
+  margin: 10px;
+  overflow-y: auto;
 }
-#section-body {
-  margin-bottom: 160px;
+.aisde-header {
+  height: 30px;
+  position: relative;
+  color: #aeb9c2;
+  cursor: pointer;
+  background-color: rgb(101, 110, 120);
+}
+.aisde-header:hover {
+  color: #fff;
+}
+.menu-on {
+  position: absolute;
+  left: 90px;
+  top: 4px;
+}
+.menu-off {
+  transform: rotate(90deg);
+  position: absolute;
+  left: 23px;
+  top: 4px;
 }
 .div-top {
   margin-top: 10px;
@@ -212,14 +236,14 @@ section {
 }
 
 /*element-ui*/
-.el-table th>.cell {
-  font-size: 13px;
-}
 .el-table .cell {
   text-align: center;
 }
-.el-table td>div {
-  font-size: 12px;
+.el-table thead tr {
+  background-color: #eef1f6;
+}
+.el-table td, .el-table th {
+  padding: 0.4em 0;
 }
 .el-popover {
   min-width: 0;

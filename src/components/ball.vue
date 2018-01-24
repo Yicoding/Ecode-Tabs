@@ -1,21 +1,19 @@
 <template>
   <div>
-  	I am type
+  	{{msg}}
   </div>
 </template>
 
 <script>
+import city from 'components/city'
 export default {
-  data () {
+  data() {
     return {
-  		
+      msg: 'I am ball'
     }
   },
-  created () {
-  	
-  },
-  methods: {
-    
+  mounted() {
+  	console.log(JSON.stringify(city))
   },
 }
 </script>

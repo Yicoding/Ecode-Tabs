@@ -8,7 +8,7 @@
 export default {
   data () {
     return {
-      msg: 'I am One'
+      msg: 'I am car'
     }
   }
 }

@@ -1,14 +1,12 @@
 <template>
   <div>
-  	<div class="div-title">
-  		站点列表&nbsp;&nbsp;<el-button type="primary" @click="resetAll" size="mini" icon="el-icon-refresh">刷新</el-button>
-  	</div>
     <div class="div-top">
       <el-button type="text" style="cursor: text;">请选择查看类型：</el-button>
       <el-tag style="margin: 0 0 10px 10px; cursor: pointer;" :type="(checkId  == 0)?'':'info'" @click.native="checkId = 0"><span>SelectAll</span></el-tag><el-tag :closable="true" @close="handleClose(tag.id)" style="margin: 0 0 10px 10px; cursor: pointer;" v-for="tag in tags" :key="tag.id" :type="(checkId  == tag.id)?'':'info'" @click.native="checkId = tag.id"><span v-text="tag.name"></span></el-tag> <el-button class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
     </div>
   	<div class="div-search">
   		<el-button size="small" @click="add" icon="el-icon-plus">新增</el-button> 
+      <el-button type="primary" @click="resetAll" size="mini" icon="el-icon-refresh">刷新</el-button>
       <div style="float: right; width: 243px;">
         <el-input size="small" v-model="input" placeholder="请输入查询内容（站点名、网址）" suffix-icon="el-icon-search"></el-input>
       </div>
@@ -44,6 +42,7 @@
 	    :data="tableData"
 	    stripe
       border
+      max-height="450"
       @sort-change="sort"
 	    style="width: 100%">
 	    <el-table-column
