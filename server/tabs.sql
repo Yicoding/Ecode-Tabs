@@ -61,7 +61,7 @@ CREATE TABLE `editcontent` (
 
 LOCK TABLES `editcontent` WRITE;
 /*!40000 ALTER TABLE `editcontent` DISABLE KEYS */;
-INSERT INTO `editcontent` VALUES (4,'<p>呕心沥血，这照片终于可以上传了1111</p><p><br></p><p><img style=\"max-width:100%;\" style=\"max-width:100%;\" src=\"static/img/1513177605902oo.png\"></p><p><img style=\"max-width:100%;\" style=\"max-width:100%;\" src=\"static/img/1513177699609null5c45cb615341b156.jpg\"></p><p><img style=\"max-width:100%;\" style=\"max-width:100%;\" src=\"static/img/1513177730411login.gif\"></p>',4),(6,'<p>图片11<img style=\"max-width:100%;\" src=\"static/img/1513178095515oo.png\"></p><p><br></p><p><img style=\"max-width:100%;\" src=\"static/img/1513178080903null5c45cb615341b156.jpg\"></p>',6);
+INSERT INTO `editcontent` VALUES (4,'<p>呕心沥血，这照片终于可以上传了1111</p><p><br></p><p><br></p><p><img style=\"max-width:100%;\" style=\"max-width:100%;\" src=\"static/img/1513177699609null5c45cb615341b156.jpg\"></p><p><img style=\"max-width:100%;\" style=\"max-width:100%;\" src=\"static/img/1513177730411login.gif\"></p>',4),(6,'<p>图片11</p><p><br></p><p><img style=\"max-width:100%;\" style=\"max-width:100%;\" src=\"static/img/1513178080903null5c45cb615341b156.jpg\"></p>',6);
 /*!40000 ALTER TABLE `editcontent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +104,7 @@ CREATE TABLE `test` (
   `content` mediumtext,
   `test_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +113,7 @@ CREATE TABLE `test` (
 
 LOCK TABLES `test` WRITE;
 /*!40000 ALTER TABLE `test` DISABLE KEYS */;
-INSERT INTO `test` VALUES (1,'num ++ 跟 ++ num的区别','一个是先运算，一个是先加值',1),(10,'什么是闭包？','答案一：<br/>\n闭包就是能够读取其他函数内部变量的函数。<br/>\n由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成“定义在一个函数内部的函数”。<br/>\n所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。<br/>\n答案二：<br/>\n当内部函数 在定义它的作用域 的外部 被引用时,就创建了该内部函数的闭包 ,如果内部函数引用了位于外部函数的变量,当外部函数调用完毕后,这些变量在内存不会被 释放,因为闭包需要它们.',1),(11,'闭包的用途？','它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中。',1),(12,'使用闭包应注意的点？','1）由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。<br/>\n2）闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。',1),(13,'什么是JavaScript 代码块？','块由左花括号开始，由右花括号结束。<br/>\n块的作用是使语句序列一起执行。<br/>\nJavaScript 函数是将语句组合在块中的典型例子。<br/>',1),(14,'css新特性？','平移、旋转、多背景图',7);
+INSERT INTO `test` VALUES (1,'num ++ 跟 ++ num的区别','一个是先运算，一个是先加值',1),(10,'什么是闭包？','答案一：<br/>\n闭包就是能够读取其他函数内部变量的函数。<br/>\n由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成“定义在一个函数内部的函数”。<br/>\n所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。<br/>\n答案二：<br/>\n当内部函数 在定义它的作用域 的外部 被引用时,就创建了该内部函数的闭包 ,如果内部函数引用了位于外部函数的变量,当外部函数调用完毕后,这些变量在内存不会被 释放,因为闭包需要它们.',1),(11,'闭包的用途？','它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中。',1),(12,'使用闭包应注意的点？','1）由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。<br/>\n2）闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。',1),(13,'什么是JavaScript 代码块？','块由左花括号开始，由右花括号结束。<br/>\n块的作用是使语句序列一起执行。<br/>\nJavaScript 函数是将语句组合在块中的典型例子。<br/>',1),(14,'css新特性？','平移、旋转、多背景图',7),(15,'三种方法能够确定浏览器窗口的尺寸','对于Internet Explorer、Chrome、Firefox、Opera 以及 Safari：<br/>\n<br/>\nwindow.innerHeight - 浏览器窗口的内部高度(包括滚动条)<br/>\nwindow.innerWidth - 浏览器窗口的内部宽度(包括滚动条)<br/><br/>\n对于 Internet Explorer 8、7、6、5：<br/>\ndocument.documentElement.clientHeight<br/>\ndocument.documentElement.clientWidth<br/><br/>\n或者<br/>\ndocument.body.clientHeight<br/>\ndocument.body.clientWidth<br/>\n<br/>\n实例：<br/>\nvar w=window.innerWidth\n|| document.documentElement.clientWidth\n|| document.body.clientWidth;<br/>\n\nvar h=window.innerHeight\n|| document.documentElement.clientHeight\n|| document.body.clientHeight;',8),(16,'window.open()','window.open(URL,name,specs,replace) <br/>\n<br/>\nfunction openWin(){ <br/>\n    myWindow=window.open(\'\',\'\',\'width=200,height=100\'); <br/>\n    myWindow.document.write(\"<p>这是\'我的窗口\'</p>\"); <br/>\n    myWindow.focus(); <br/>\n}\n',8),(17,'Window Screen','screen.availWidth - 可用的屏幕宽度 <br/>\nscreen.availHeight - 可用的屏幕高度',8),(18,'Window Location','location.hostname 返回 web 主机的域名 <br/>\nlocation.pathname 返回当前页面的路径和文件名 <br/>\nlocation.port 返回 web 主机的端口 （80 或 443） <br/>\nlocation.protocol 返回所使用的 web 协议（http:// 或 https://） <br/>',8),(19,'Window History','history.back() - 与在浏览器点击后退按钮相同 <br/>\nhistory.forward() - 与在浏览器中点击向前按钮相同',8),(20,'window.navigator 对象包含有关访问者浏览器的信息','<p>浏览器代号:  navigator.appCodeName  </p>\n<p>浏览器名称:   navigator.appName  </p>\n<p>浏览器版本:   navigator.appVersion  </p>\n<p>启用Cookies:  navigator.cookieEnabled  </p>\n<p>硬件平台:   navigator.platform  </p>\n<p>用户代理:  navigator.userAgent  </p>\n<p>用户代理语言:   navigator.systemLanguage  </p>\n',8),(21,'window.confirm(\"sometext\")确认框','var r=confirm(\"按下按钮\"); <br/>\nif (r==true)<br/>\n{<br/>\n    x=\"你按下了\\\"确定\\\"按钮!\";<br/>\n}<br/>\nelse<br/>\n{<br/>\n    x=\"你按下了\\\"取消\\\"按钮!\";<br/>\n}<br/>',8),(22,'window.prompt(\"sometext\",\"defaultvalue\")提示框','提示框经常用于提示用户在进入页面前输入某个值。<br/>\n当提示框出现后，用户需要输入某个值，然后点击确认或取消按钮才能继续操纵。<br/>\n如果用户点击确认，那么返回值为输入的值。如果用户点击取消，那么返回值为 null。<br/>\n<br>\n实例：<br/>\nvar person=prompt(\"请输入你的名字\",\"Harry Potter\");<br/>\nif (person!=null && person!=\"\")<br/>\n{\n    x=\"你好 \" + person + \"! 今天感觉如何?\";<br/>\n    document.getElementById(\"demo\").innerHTML=x;<br/>\n}',8),(23,'JavaScript 计时事件','setInterval() - 间隔指定的毫秒数不停地执行指定的代码。<br/>\nwindow.setInterval(\"javascript function\",milliseconds);<br/>\nsetInterval(function(){alert(\"Hello\")},3000);<br/>\nwindow.clearInterval(intervalVariable)<br/>\n<br/>\nsetTimeout() - 暂停指定的毫秒数后执行指定的代码<br/>\nwindow.setTimeout(\"javascript 函数\",毫秒数);<br/>\nindow.clearTimeout(timeoutVariable)',8),(24,'JavaScript Cookie','什么是 Cookie？<br/>\nCookie 是一些数据, 存储于你电脑上的文本文件中。<br/>\n当 web 服务器向浏览器发送 web 页面时，在连接关闭后，服务端不会记录用户的信息。<br/>\nCookie 的作用就是用于解决 \"如何记录客户端的用户信息\":<br/>\n当用户访问 web 页面时，他的名字可以记录在 cookie 中。<br/>\n在用户下一次访问该页面时，可以在 cookie 中读取用户访问记录。<br/>\n<br/><br/>\n使用 JavaScript 创建Cookie: <br/>\nJavaScript 中，创建 cookie 如下所示：<br/>\ndocument.cookie=\"username=John Doe\";(一次只能创建一个)<br/>\n您还可以为 cookie 添加一个过期时间（以 UTC 或 GMT 时间）。默认情况下，cookie 在浏览器关闭时删除：<br/>\ndocument.cookie=\"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 GMT\";<br/>\n您可以使用 path 参数告诉浏览器 cookie 的路径。默认情况下，cookie 属于当前页面。<br/>\ndocument.cookie=\"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 GMT; <br/>\n<br/>\n使用 JavaScript 删除 Cookie：<br/>\n删除 cookie 非常简单。您只需要设置 expires 参数为以前的时间即可，如下所示，设置为 Thu, 01 Jan 1970 00:00:00 GMT:<br/>\n\ndocument.cookie = \"username=; expires=Thu, 01 Jan 1970 00:00:00 GMT\";',8),(25,'获取 cookie 值的函数','\n然后，我们创建一个函数用户返回指定 cookie 的值：<br/>\n\nfunction getCookie(cname)<br/>\n{<br/>\n  var name = cname + \"=\";<br/>\n  var ca = document.cookie.split(\';\');<br/>\n  for(var i=0; i<ca.length; i++) <br/>\n  {<br/>\n    var c = ca[i].trim();<br/>\n    if (c.indexOf(name)==0) return c.substring(name.length,c.length);<br/>\n  }<br/>\n  return \"\";<br/>\n}<br/>',8),(26,'JavaScript：验证是否是数字','if isNaN(x) {alert(\"不是数字\")};',1);
 /*!40000 ALTER TABLE `test` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +152,7 @@ CREATE TABLE `type_test` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +161,7 @@ CREATE TABLE `type_test` (
 
 LOCK TABLES `type_test` WRITE;
 /*!40000 ALTER TABLE `type_test` DISABLE KEYS */;
-INSERT INTO `type_test` VALUES (1,'原生js'),(6,'html'),(7,'css');
+INSERT INTO `type_test` VALUES (1,'原生js'),(6,'html'),(7,'css'),(8,'BOM');
 /*!40000 ALTER TABLE `type_test` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -174,4 +174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-23 14:32:53
+-- Dump completed on 2018-01-24 21:49:09
