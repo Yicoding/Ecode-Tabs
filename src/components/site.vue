@@ -1,5 +1,5 @@
 <template>
-  <div id="main">
+  <div>
   	<div class="div-title">
   		站点列表&nbsp;&nbsp;<el-button type="primary" @click="resetAll" size="mini" icon="el-icon-refresh">刷新</el-button>
   	</div>
@@ -82,29 +82,17 @@
 	      </template>
 	    </el-table-column>
     </el-table>
-    <div class="page-list">
-      <div class="page-info left">
-        共 <span v-text="total" style="color: #E38A8B;"></span> 条记录，每页显示&nbsp;
-        <select v-model="selected">
-          <option value="3">3</option>
-          <option value="5">5</option>
-          <option value="10">10</option>
-        </select>
-        &nbsp;条信息
-      </div>
-      <div class="page-bar right">
-        <ul class="pagination">
-          <li><a href="#" @click.prevent="cur=0">第一页</a></li>
-          <li v-if="showFirst"><a @click="cur--">上一页</a></li>
-          <li v-for="index in indexs"  v-bind:class="{ 'active': (cur+1) == index}">
-            <a @click="btnClick(index)" v-text="index"></a>
-          </li>
-          <li v-if="showLast"><a @click="cur++">下一页</a></li>
-          <li><a>共<i>{{all}}</i>页</a></li>
-          <li><a @click="cur=all-1">最后一页</a></li>
-        </ul>
-      </div>
-    </div>
+    <div class="div-top"></div>
+    <el-pagination
+      background
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[3, 5, 10, 20]"
+      :page-size="size"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="totalElements">
+    </el-pagination>
   </div>
 </template>
 
@@ -116,11 +104,10 @@ export default {
       options: [],
       checkId: 0,
       checkName: null,
-	  	tableData: [],
-	  	cur: 0, // 当前页码
-	    all: 3, // 总页数
-	    total: 30, // 总数据条数
-	    selected: 10, // 每页显示的数据条数
+      tableData: [],
+      totalElements: 0,
+      currentPage: 1,
+      size: 10,
 	    direction: 'ASC', // 正序
     	properties: 'type_id', // 按ID排序
       dialogFormVisible: false,
@@ -143,69 +130,24 @@ export default {
       },
       method: '',
       input: '',
+      timer: null,
 		}
 	},
 	created () {
     this.tagAll()
     this.refreshAll()
 	},
-	computed: {
-    indexs () {
-      var left = 1
-      var right = this.all
-      var ar = []
-      if (this.all >= 11) {
-        if (this.cur > 5 && this.cur < this.all - 4) {
-          left = this.cur - 5
-          right = this.cur + 4
-        } else {
-          if (this.cur <= 5) {
-            left = 1
-            right = 8
-          } else {
-            right = this.all
-            left = this.all - 7
-          }
-        }
-      }
-      while (left <= right) {
-        ar.push(left)
-        left++
-      }
-      return ar
-    },
-    showLast () {
-      if (this.cur === this.all - 1) {
-          return false
-      }
-      return true
-    },
-    showFirst () {
-      if (this.cur === 0) {
-        return false
-      }
-      return true
-    }
-	},
 	methods: {
-    // 模糊查询
-    findByName() {
-      this.$http.get(this.resource + '/site/like', {params: {pageIndex: this.cur, pageSize: this.selected, direction: this.direction, properties: this.properties, name: this.input}}).then((res) => {
-        this.all = res.data.totalPages
-        this.total = res.data.totalElements
-        this.tableData = res.data.content
-        if (res.data.content.length == 0) {
-          this.$message({
-            showClose: true,
-            message: '没有找到符合条件的数据！',
-            type: 'info'
-          });
+    debounce(func, delay) { // 延迟执行模糊搜索达到节约资源的目的
+      let timer
+      return function (...args) {
+        if (timer) {
+          clearTimeout(timer)
         }
-      })
-    },
-    // 站点跳转
-    jump (value) {
-      window.open(value)
+        timer = setTimeout(() => {
+          func.apply(this, args)
+        }, delay)
+      }
     },
     // 查询类型
     tagAll () {
@@ -218,6 +160,45 @@ export default {
           this.options.push({id: String(item.id), name: item.name})
         }
       })
+    },
+    // 刷新
+    resetAll () {
+      this.currentPage = 1
+      this.direction = 'ASC'
+      this.properties = 'type_id'
+      this.checkId = 0
+      this.currentPageAll()
+    },
+    // 回第一页
+    refreshAll () {
+      this.currentPage = 1
+      this.currentPageAll()
+    },
+    // 刷新当前页数据
+    currentPageAll () {
+      this.$http.get(this.resource + '/site/findAll', {params: {pageIndex: this.currentPage - 1, pageSize: this.size, direction: this.direction, properties: this.properties, checkId: this.checkId}}).then((res) => {
+        this.tableData = res.data.content
+        this.totalElements = res.data.totalElements
+      })
+    },
+    // 模糊查询
+    findByName() {
+      this.checkId = 0
+      this.$http.get(this.resource + '/site/like', {params: {pageIndex: this.currentPage - 1, pageSize: this.size, direction: this.direction, properties: this.properties, name: this.input}}).then((res) => {
+        this.tableData = res.data.content
+        this.totalElements = res.data.totalElements
+        if (res.data.content.length == 0) {
+          this.$message({
+            showClose: true,
+            message: '没有找到符合条件的数据！',
+            type: 'info'
+          });
+        }
+      })
+    },
+    // 站点跳转
+    jump (value) {
+      window.open(value)
     },
     // 添加类型
     showInput () {
@@ -272,30 +253,6 @@ export default {
         });          
       });
     },
-    // 刷新
-    resetAll () {
-      this.cur = 0
-      this.selected = 10
-      this.direction = 'ASC'
-      this.properties = 'type_id'
-      this.checkId = 0
-      this.currentPageAll()
-    },
-    // 回第一页
-    refreshAll () {
-      this.cur = 0
-      // this.checkId = 0
-      this.currentPageAll()
-    },
-  	// 刷新当前页数据
-  	currentPageAll () {
-      this.$http.get(this.resource + '/site/findAll', {params: {pageIndex: this.cur, pageSize: this.selected, direction: this.direction, properties: this.properties, checkId: this.checkId}}).then((response) => {
-        console.log(JSON.stringify(response.data))
-        this.all = response.data.totalPages
-        this.total = response.data.totalElements
-        this.tableData = response.data.content
-      })
-  	},
   	// 新增站点
   	add () {
   		this.dialogFormVisible = true
@@ -395,6 +352,17 @@ export default {
         });          
       });
   	},
+    handleSizeChange(val) {
+      // console.log(`每页 ${val} 条`)
+      this.size = val
+      this.currentPage = 1
+      this.currentPageAll()
+    },
+    handleCurrentChange(val) {
+      // console.log(`当前页: ${val}`)
+      this.currentPage = val
+      this.currentPageAll()
+    },
     // 排序
     sort (event) {
       console.log(event)
@@ -414,27 +382,8 @@ export default {
       }
       this.currentPageAll()
     },
-	 // 页面点击
-		btnClick (num) {
-    	this.cur = num - 1
-		},
 	},
 	watch: {
-    cur () {
-      if (this.input) {
-        this.findByName()
-      } else {
-        this.currentPageAll()
-      }
-    },
-    selected () {
-      this.cur = 0
-      if (this.input) {
-        this.findByName()
-      } else {
-        this.currentPageAll()
-      }
-    },
     checkId (value) {
       this.cur = 0
       this.selected = 10
@@ -454,9 +403,14 @@ export default {
     },
     input (value) {
       if (value) {
-        this.cur = 0
-        console.log(value)
-        this.findByName()
+        this.currentPage = 1
+        // this.debounce(this.findByName(), 2000)
+        if (this.timer) {
+          clearTimeout(this.timer)
+        }
+        this.timer = setTimeout(() => {
+          this.findByName()
+        }, 300)
       } else {
         this.resetAll()
       }

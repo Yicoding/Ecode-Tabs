@@ -9,7 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui'
 Vue.use(ElementUI)
 Vue.prototype.$http = axios
-Vue.prototype.resource = 'http://localhost:3000'
+Vue.prototype.resource = 'http://localhost:9000'
 Vue.config.productionTip = false
 // 图标
 import 'assets/style.css'

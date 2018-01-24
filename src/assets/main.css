@@ -76,32 +76,6 @@ section {
 .div-top {
   margin-top: 10px;
 }
-/*table*/
-.table {
-  word-wrap:break-word;
-  word-break:break-all;
-  display: table;
-  width: 100%;
-  max-width: 100%;
-  border-spacing: 0;
-  border-collapse: collapse;
-  border: 1px solid #ddd;
-}
-.table > tbody > tr {
-  display: table-row;
-  vertical-align: inherit;
-  border-color: inherit;
-  border:1px solid #dfe6ec;
-}
-.table > tbody > tr:nth-child(even), .table > thead > tr {
-  background: #eef1f6;
-}
-.table > tbody > tr > td, & > thead > tr > th {
-  display: table-cell;
-  font-size: 0.8em;
-  padding: 8px;
-  text-align: center;
-}
 
 /*修改elemen-ui*/
 /*.el-tabs--border-card .el-tabs__content {

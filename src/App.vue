@@ -2,7 +2,7 @@
   <div style="height: 100%;">
     <aside>
       <el-col>
-        <div @click="hideaside" style="rgb(101, 110, 120);height: 30px;">
+        <div @click="hideaside" style="background: rgb(101, 110, 120);height: 30px;">
           <div style="position: absolute; left: 75px; top: 4px;" v-show="asidediv">
             <span v-show="asidediv" class="icon-menu div-off"></span>
           </div>
