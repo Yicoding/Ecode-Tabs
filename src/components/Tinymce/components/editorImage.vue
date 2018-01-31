@@ -1,6 +1,6 @@
 <template>
   <div class="upload-container">
-    <el-button icon='upload' :style="{background:color,borderColor:color}" @click=" dialogVisible=true" type="primary">上传图片
+    <el-button icon='el-icon-upload' :style="{background:color,borderColor:color}" @click=" dialogVisible=true" type="primary">上传图片
     </el-button>
     <el-dialog :visible.sync="dialogVisible" :modal="false">
       <el-upload class="editor-slide-upload" :action="action" :multiple="true" :file-list="fileList" :show-file-list="true"

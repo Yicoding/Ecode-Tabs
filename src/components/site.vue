@@ -7,6 +7,9 @@
   	<div class="div-search">
   		<el-button size="small" @click="add" icon="el-icon-plus">新增</el-button> 
       <el-button type="primary" @click="resetAll" size="mini" icon="el-icon-refresh">刷新</el-button>
+      <el-input size="small" style='width: 220px;' placeholder="请输入文件名(默认excel-list)" prefix-icon="el-icon-document" v-model="filename"></el-input>
+      <el-button size="small" style='margin-bottom: 20px;' type="primary" icon="el-icon-document" @click="handleDownload" :loading="downloadLoading">导出本页数据</el-button>
+      <el-button size="small" style='margin-bottom: 20px;' type="success" icon="el-icon-download" @click="downLoadAll" :loading="downloadLoadingAll">导出全部数据</el-button>
       <div style="float: right; width: 243px;">
         <el-input size="small" v-model="input" placeholder="请输入查询内容（站点名、网址）" suffix-icon="el-icon-search"></el-input>
       </div>
@@ -67,7 +70,7 @@
         </template>
 	    </el-table-column>
 	    <el-table-column
-	      prop="type.name"
+	      prop="type"
         sortable="custom"
 	      label="类型" min-width="120">
 	    </el-table-column>
@@ -130,6 +133,9 @@ export default {
       method: '',
       input: '',
       timer: null,
+      filename: null,
+      downloadLoading: false,
+      downloadLoadingAll: false,
 		}
 	},
 	created () {
@@ -137,6 +143,40 @@ export default {
     this.refreshAll()
 	},
 	methods: {
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v => filterVal.map(j => {
+        if (j === 'timestamp') {
+          return parseTime(v[j])
+        } else {
+          return v[j]
+        }
+      }))
+    },
+    // 导出本页数据Excel表格
+    handleDownload() {
+      this.downloadLoading = true
+      import('./vendor/Export2Excel').then(excel => {
+        const tHeader = ['ID', '站点名', '网址', '类型']
+        const filterVal = ['id', 'name', 'site', 'type']
+        const tableData = this.tableData
+        const data = this.formatJson(filterVal, tableData)
+        excel.export_json_to_excel(tHeader, data, this.filename)
+        this.downloadLoading = false
+      })
+    },
+    downLoadAll() {
+      this.downloadLoadingAll = true
+      import('./vendor/Export2Excel').then(excel => {
+        const tHeader = ['ID', '站点名', '网址', '类型']
+        const filterVal = ['id', 'name', 'site', 'type']
+        this.$http.get(`${this.resource}/site/findListAll`).then((res) => {
+          const tableData = res.data.content
+          const data = this.formatJson(filterVal, tableData)
+          excel.export_json_to_excel(tHeader, data, this.filename)
+          this.downloadLoadingAll = false
+        })
+      })
+    },
     debounce(func, delay) { // 延迟执行模糊搜索达到节约资源的目的
       let timer
       return function (...args) {
@@ -176,7 +216,10 @@ export default {
     // 刷新当前页数据
     currentPageAll () {
       this.$http.get(this.resource + '/site/findAll', {params: {pageIndex: this.currentPage - 1, pageSize: this.size, direction: this.direction, properties: this.properties, checkId: this.checkId}}).then((res) => {
-        this.tableData = res.data.content
+        this.tableData = res.data.content.map((item) => {
+          item.type = item.type.name
+          return item
+        })
         this.totalElements = res.data.totalElements
       })
     },
@@ -184,7 +227,10 @@ export default {
     findByName() {
       this.checkId = 0
       this.$http.get(this.resource + '/site/like', {params: {pageIndex: this.currentPage - 1, pageSize: this.size, direction: this.direction, properties: this.properties, name: this.input}}).then((res) => {
-        this.tableData = res.data.content
+        this.tableData = res.data.content.map((item) => {
+          item.type = item.type.name
+          return item
+        })
         this.totalElements = res.data.totalElements
         if (res.data.content.length == 0) {
           this.$message({
@@ -366,7 +412,7 @@ export default {
     sort (event) {
       console.log(event)
       if (event.prop != null) {
-        if (event.prop == 'type.name') {
+        if (event.prop == 'type') {
           this.properties = 'type_id'
         } else {
           this.properties = event.prop

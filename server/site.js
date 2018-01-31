@@ -235,5 +235,31 @@ router.delete('/site/delete/:id', (req, res) => {
 		})
 	})
 })
-
+// /site/findListAll
+router.get('/site/findListAll', (req, res) => {
+	var sql = 'select * from site'
+	pool.getConnection((err, connection) => {
+		connection.query('select s.id, s.name, s.site, t.id as type_id, t.name as type_name from site s inner join type_site t on s.type_id=t.id order by type_id,id ASC', (error, result) => {
+			if (error) {
+				console.log(error)
+				res.status(500).send(error)
+			} else {
+				var content = []
+				for (var k = 0; k < result.length; k ++) {
+					var item = result[k]
+					content.push({
+						id: item.id,
+						name: item.name,
+						site: item.site,
+						type: item.type_name
+					})
+				}
+				res.send({
+					content: content
+				})
+			}
+			connection.release();
+		})
+	})
+})
 module.exports = router
