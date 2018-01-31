@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+Vue.use(Router)
 
 import site from 'components/site'
 import knowledge from 'components/knowledge'
@@ -9,7 +10,16 @@ import edit from 'components/edit'
 import book from 'components/book'
 import ball from 'components/ball'
 import car from 'components/car'
-Vue.use(Router)
+
+// // 路由懒加载
+// const site = () => import('components/site')
+// const knowledge = () => import('components/knowledge')
+// const knowledgeDetail = () => import('components/knowledge-detail')
+// const text = () => import('components/text')
+// const edit = () => import('components/edit')
+// const book = () => import('components/book')
+// const ball = () => import('components/ball')
+// const car = () => import('components/car')
 
 export default new Router({
   // mode: 'history',

@@ -2,19 +2,19 @@
   <div class="project-box">
   	<el-card class="box-card">
       <div slot="header" class="clearfix">
-        <el-button size="small" icon="el-icon-edit" :plain="true" type="warning" @click="isEdit = true" v-show="!isEdit">编辑</el-button>
+        <el-button size="small" icon="el-icon-edit" :plain="true" type="warning" @click="edit" v-show="!isEdit">编辑</el-button>
+        <el-button v-show="isEdit" size="small" type="primary" @click="saveContent(htmlForEditor)">Save</el-button>
+        <el-button v-show="isEdit" size="small" @click="find">Cancle</el-button>
         <el-button style="float: right;" size="small" icon="el-icon-arrow-left" @click="$router.go(-1)">返回到文本编辑列表</el-button>
       </div>
       <div class="text item">
         <div v-html="content" v-show="!isEdit"></div>
         <div v-show="isEdit">
-          <vue-editor id="editor"
+          <!-- <vue-editor id="editor"
             useCustomImageHandler
             @imageAdded="handleImageAdded" v-model="htmlForEditor">
-          </vue-editor>
-          <div class="div-top"></div>
-          <el-button size="small" type="primary" @click="saveContent(htmlForEditor)">Save</el-button>
-          <el-button size="small" @click="find">Cancle</el-button>
+          </vue-editor> -->
+          <tinymce :height="400" v-model="htmlForEditor" ref="tinymce"></tinymce>
         </div>
       </div>
     </el-card>
@@ -22,10 +22,12 @@
 </template>
 
 <script>
-import { VueEditor } from 'vue2-editor'
+// import { VueEditor } from 'vue2-editor'
+import Tinymce from 'components/Tinymce'
 export default {
   components: {
-    VueEditor
+    // VueEditor
+    Tinymce
   },
 	data () {
   	return {
@@ -46,6 +48,10 @@ export default {
     this.find()
   },
   methods: {
+    edit() {
+      this.isEdit = true
+      this.$refs.tinymce.setContent(this.htmlForEditor)
+    },
     find () {
       this.$http.get(this.resource + '/editcontent/find/' + this.$route.params.id).then((res) => {
         this.content = res.data.content

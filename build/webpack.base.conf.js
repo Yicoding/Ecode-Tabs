@@ -14,6 +14,7 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
+    // vendor: ['vue', 'vue-router', 'vuex', 'axios'],
   },
   output: {
     path: config.build.assetsRoot,
