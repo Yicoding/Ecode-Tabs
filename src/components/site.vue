@@ -2,12 +2,12 @@
   <div>
     <div class="div-top">
       <el-button type="text" style="cursor: text;">请选择查看类型：</el-button>
-      <el-tag style="margin: 0 0 10px 10px; cursor: pointer;" :type="(checkId  == 0)?'':'info'" @click.native="checkId = 0"><span>SelectAll</span></el-tag><el-tag :closable="true" @close="handleClose(tag.id)" style="margin: 0 0 10px 10px; cursor: pointer;" v-for="tag in tags" :key="tag.id" :type="(checkId  == tag.id)?'':'info'" @click.native="checkId = tag.id"><span v-text="tag.name"></span></el-tag> <el-button class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
+      <el-tag style="margin: 0 0 10px 10px; cursor: pointer;" :type="(checkId  == 0)?'':'info'" @click.native="checkId = 0" size="small"><span>SelectAll</span></el-tag><el-tag size="small" :closable="true" @close="handleClose(tag.id)" style="margin: 0 0 10px 10px; cursor: pointer;" v-for="tag in tags" :key="tag.id" :type="(checkId  == tag.id)?'':'info'" @click.native="checkId = tag.id"><span v-text="tag.name"></span></el-tag> <el-button class="button-new-tag" size="mini" @click="showInput">+ New Tag</el-button>
     </div>
   	<div class="div-search">
   		<el-button size="small" @click="add" icon="el-icon-plus">新增</el-button> 
       <el-button type="primary" @click="resetAll" size="mini" icon="el-icon-refresh">刷新</el-button>
-      <el-input size="small" style='width: 220px;' placeholder="请输入文件名(默认excel-list)" prefix-icon="el-icon-document" v-model="filename"></el-input>
+      <el-input size="small" style='width: 260px;' placeholder="请输入导出的文件名(默认excel-list)" prefix-icon="el-icon-document" v-model="filename"></el-input>
       <el-button size="small" style='margin-bottom: 20px;' type="primary" icon="el-icon-document" @click="handleDownload" :loading="downloadLoading">导出本页数据</el-button>
       <el-button size="small" style='margin-bottom: 20px;' type="success" icon="el-icon-download" @click="downLoadAll" :loading="downloadLoadingAll">导出全部数据</el-button>
       <div style="float: right; width: 243px;">
@@ -90,7 +90,7 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-      :page-sizes="[3, 5, 10, 20]"
+      :page-sizes="[3, 5, 10, 20, 50, 100, 200]"
       :page-size="size"
       layout="total, sizes, prev, pager, next, jumper"
       :total="totalElements">
