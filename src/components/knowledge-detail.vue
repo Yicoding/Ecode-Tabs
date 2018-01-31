@@ -1,6 +1,6 @@
 <template>
   <div class="project-box">
-    <el-dialog title="试题" :visible.sync="dialogFormVisible">
+    <el-dialog title="试题" :visible.sync="dialogFormVisible" :modal="false">
       <el-form :model="form" ref="form" :rules="rules" label-width="100px" class="demo-ruleForm">
         <el-form-item label="标题" prop="title">
           <el-input type="textarea" v-model="form.title"></el-input>

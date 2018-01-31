@@ -12,7 +12,7 @@
       </div>
   	</div>
     <!-- 模态框 -->
-    <el-dialog title="枚举信息" :visible.sync="dialogFormVisible">
+    <el-dialog title="枚举信息" :visible.sync="dialogFormVisible" :modal="false">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="站点类型" prop="type_id">
           <el-tag type="primary" v-text="checkName" v-if="!(checkId == 0)"></el-tag>
