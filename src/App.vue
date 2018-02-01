@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="box">
     <aside ref="aside">
       <div class="aisde-header" @click="expandAll">
         <div class="menu-on" v-show="!isCollapse">
@@ -16,24 +16,24 @@
         </el-menu-item>
       </el-menu>
     </aside>
-    <header ref="header">
-      <div style="line-height: 60px; background: #fafafa;overflow: hidden;">
-        <div class="userinfo">
-          <ul>
-            <li><span class="icon-user"></span></li>
-            <li>Ecode</li>
-          </ul>
+    <div class="box-content">
+      <header ref="header">
+        <div class="header-top">
+          <div class="userinfo">
+            <ul>
+              <li><span class="icon-user"></span></li>
+              <li>Ecode</li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <el-tabs type="border-card" v-model="editableTabsValue" closable @tab-remove="removeTab">
-        <el-tab-pane v-for="(todo, key) in todos" :key="key" :label="todo.title" :name="todo.name" @click="jump(todo.name)"></el-tab-pane>
-      </el-tabs>
-    </header>
-    <section ref="section">
-      <div class="section">
+        <el-tabs type="border-card" v-model="editableTabsValue" closable @tab-remove="removeTab">
+          <el-tab-pane v-for="(todo, key) in todos" :key="key" :label="todo.title" :name="todo.name" @click="jump(todo.name)"></el-tab-pane>
+        </el-tabs>
+      </header>
+      <section ref="section">
         <router-view/>
-      </div>
-    </section>
+      </section>
+    </div>
     <div id="mouseMenu" v-show="showMenu">
       <ul>
         <li @click="closetab"><span class="icon-cancel-circle" style="color: #e06d6d;"></span>&nbsp;&nbsp;关闭全部</li>
@@ -123,13 +123,9 @@ export default {
       if (this.isCollapse) {
         window.clearTimeout(this.leftOut)
         this.$refs.aside.style.width = 200 + 'px'
-        this.$refs.header.style.left = 200 + 'px'
-        this.$refs.section.style.left = 200 + 'px'
       } else {
         this.leftOut = setTimeout(() => {
           this.$refs.aside.style.width = 64 + 'px'
-          this.$refs.header.style.left = 64 + 'px'
-          this.$refs.section.style.left = 64 + 'px'
         }, 300)
       }
       this.isCollapse = !this.isCollapse
