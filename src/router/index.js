@@ -10,6 +10,7 @@ import edit from 'components/edit'
 import book from 'components/book'
 import ball from 'components/ball'
 import car from 'components/car'
+import h5 from 'components/h5'
 
 // // 路由懒加载
 // const site = () => import('components/site')
@@ -20,6 +21,7 @@ import car from 'components/car'
 // const book = () => import('components/book')
 // const ball = () => import('components/ball')
 // const car = () => import('components/car')
+// const h5 = () => import('components/h5')
 
 export default new Router({
   // mode: 'history',
@@ -32,6 +34,7 @@ export default new Router({
     { path: '/book', component: book },
     { path: '/ball', component: ball },
     { path: '/car', component:  car },
+    { path: '/h5', component:  h5 },
     { path: '*', redirect: '/site'}
   ]
 })

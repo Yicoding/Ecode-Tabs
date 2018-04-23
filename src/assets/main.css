@@ -1,15 +1,9 @@
 /*common*/
-html {
-  height: 100%;
-}
-
 body {
   font:17px "microsoft yahei",Arial,Helvetica,sans-serif;
   color:#000000;
   margin:0;
   padding:0;
-  height: 100%;
-  overflow: hidden;
 }
 
 ul,ol,p,h1,h2,h3,h4,h5,h6,dl,dt,dd {
@@ -30,9 +24,6 @@ a:focus {
   color: #545450;
   text-decoration: none;
 }
-/* label {
-  cursor: pointer;
-} */
 img {
   vertical-align:middle;
   max-width: 100%;
@@ -60,6 +51,7 @@ img {
   display: flex;
   height: 100vh;
   align-items: stretch;
+  overflow: hidden;
 }
 aside {
   width: 200px;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-dialog title="提示" :visible.sync="dialogFormVisible" width="40%" :modal="false">
+    <el-dialog title="提示" :visible.sync="dialogFormVisible" width="40%">
       <el-form :model="form" ref="form" :rules="rules">
         <el-form-item label="demo名" prop="name">
           <el-input v-model="form.name" auto-complete="off"></el-input>

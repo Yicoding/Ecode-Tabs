@@ -64,7 +64,7 @@ router.post('/edit/upload', multipartMiddleware, function (req, res) {
 })
 // edit/add
 router.post('/edit/add', (req, res) => {
-	var sql = 'insert into edit values(null, ?)'
+	var sql = 'insert into edit values(null, ?, null)'
 	pool.getConnection((err, connection) => {
 		connection.query(sql, [req.body.name], (err, data, fields) => {
 			if (err) {

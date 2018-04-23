@@ -15,7 +15,7 @@
       </div>
   	</div>
     <!-- 模态框 -->
-    <el-dialog title="枚举信息" :visible.sync="dialogFormVisible" :modal="false">
+    <el-dialog title="枚举信息" :visible.sync="dialogFormVisible">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="站点类型" prop="type_id">
           <el-tag type="primary" v-text="checkName" v-if="!(checkId == 0)"></el-tag>
@@ -69,7 +69,7 @@
         </template>
 	    </el-table-column>
 	    <el-table-column
-	      prop="type"
+	      prop="type.name"
         sortable="custom"
 	      label="类型" min-width="120">
 	    </el-table-column>
@@ -195,7 +195,7 @@ export default {
         this.options = []
         for (var k in res.data) {
           var item = res.data[k]
-          this.options.push({id: String(item.id), name: item.name})
+          this.options.push({id: item.id, name: item.name})
         }
       })
     },
@@ -215,10 +215,7 @@ export default {
     // 刷新当前页数据
     currentPageAll () {
       this.$http.get(this.resource + '/site/findAll', {params: {pageIndex: this.currentPage - 1, pageSize: this.size, direction: this.direction, properties: this.properties, checkId: this.checkId}}).then((res) => {
-        this.tableData = res.data.content.map((item) => {
-          item.type = item.type.name
-          return item
-        })
+        this.tableData = res.data.content
         this.totalElements = res.data.totalElements
       })
     },
@@ -306,13 +303,14 @@ export default {
   	},
     // 编辑
     edit (value) {
+      console.log(value)
       this.method = 'put'
       this.dialogFormVisible = true
       this.ruleForm = {
         id: value.id,
         name: value.name,
         site: value.site,
-        type_id: String(value.type.id)
+        type_id: value.type.id
       }
     },
     // 提交
@@ -411,7 +409,7 @@ export default {
     sort (event) {
       console.log(event)
       if (event.prop != null) {
-        if (event.prop == 'type') {
+        if (event.prop == 'type.name') {
           this.properties = 'type_id'
         } else {
           this.properties = event.prop

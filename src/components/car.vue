@@ -1,15 +1,23 @@
 <template>
   <div>
-  	{{msg}}
+  	<BigImg :data="imgList"></BigImg>
   </div>
 </template>
 
 <script>
+import BigImg from 'components/previewImg.vue'
 export default {
   data () {
     return {
-      msg: 'I am car'
+      imgList: [
+        {path: 'http://ppt.h3c.com:5005/static/img/theme/theme1.jpg'},
+        {path: 'http://ppt.h3c.com:5005/static/img/theme/theme2.jpg'},
+        {path: 'http://ppt.h3c.com:5005/static/img/theme/theme3.jpg'}
+      ]
     }
+  },
+  components: {
+    BigImg
   }
 }
 </script>

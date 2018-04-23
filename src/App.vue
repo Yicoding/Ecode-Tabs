@@ -16,7 +16,7 @@
         </el-menu-item>
       </el-menu>
     </aside>
-    <div class="box-content">
+    <div class="box-content" ref="boxContent">
       <header ref="header">
         <div class="header-top">
           <div class="userinfo">
@@ -32,8 +32,12 @@
       </header>
       <section ref="section">
         <router-view/>
+        <lg-preview></lg-preview>
       </section>
     </div>
+    <transition name="fade">
+      <div class= "returnTop"  @click="backToTop" v-show="show"></div>
+    </transition>
     <div id="mouseMenu" v-show="showMenu">
       <ul>
         <li @click="closetab"><span class="icon-cancel-circle" style="color: #e06d6d;"></span>&nbsp;&nbsp;关闭全部</li>
@@ -52,9 +56,10 @@ export default {
         {title: '站点管理', name: '/site', icon: 'el-icon-mobile-phone'},
         {title: '知识管理', name: '/knowledge', icon: 'el-icon-info'},
         {title: '文本编辑', name: '/text', icon: 'el-icon-document'},
-        {title: '书籍分类', name: '/book', icon: 'el-icon-setting'},
-        {title: '球类运动', name: '/ball', icon: 'el-icon-news'},
-        {title: '爱车之旅', name: '/car', icon: 'el-icon-goods'},
+        {title: '图片预览', name: '/book', icon: 'el-icon-setting'},
+        {title: '富文本', name: '/ball', icon: 'el-icon-news'},
+        {title: '图片预览2', name: '/car', icon: 'el-icon-goods'},
+        {title: 'h5', name: '/h5', icon: 'el-icon-tickets'},
       ],
       editableTabsValue: '/site',
       menu: [],
@@ -63,6 +68,9 @@ export default {
       targetTab: '站点管理',
       isCollapse: false,
       leftOut: null,
+      scrollTop: 0,
+      show: false,
+      interval: null
     }
   },
   created () {
@@ -79,6 +87,7 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
+      this.$refs.boxContent.addEventListener('scroll', this.handleScroll, true)
       setTimeout(() => {
         this.mouseMenu = document.getElementById('mouseMenu')
         this.mouseMenu.onmouseover = () => {
@@ -119,6 +128,30 @@ export default {
     }
   },
   methods: {
+    handleScroll() {
+      this.scrollTop = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0
+      if (this.$refs.boxContent.scrollTop >= this.scrollTop / 2) {
+        this.show = true 
+      } else {
+        this.show = false
+      }
+    },
+    backToTop() {
+      clearInterval(this.interval)
+      this.interval = setInterval(() => {
+        var current = this.$refs.boxContent.scrollTop;
+        var step = (0 - current) / 10;
+        step = Math.ceil(step);
+        current += step;
+        if(current <= 10) {
+          current = 0 
+        }
+        this.$refs.boxContent.scrollTop = current
+        if (current <= 0) {
+          clearInterval(this.interval)
+        }
+      }, 10)
+    },
     expandAll () {
       if (this.isCollapse) {
         window.clearTimeout(this.leftOut)
@@ -200,10 +233,35 @@ export default {
       }
       this.editableTabsValue = this.menuArr[0].name
     },
-  }
+  },
+  beforeDestroy() {
+    this.$refs.section.removeEventListener('scroll', this.handleScroll)
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
+  },
 }
 </script>
 
-<style>
-
+<style scoped>
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0
+  }
+  .returnTop {
+    position: fixed;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    right: 50px;
+    bottom: 50px;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    line-height: 45px;
+    background-image: url("assets/ruturnTop.png");
+     background-size: 40px 40px;
+  }
 </style>
