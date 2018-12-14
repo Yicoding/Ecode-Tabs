@@ -10,9 +10,9 @@ export default {
   data () {
     return {
       imgList: [
-        {path: 'http://ppt.h3c.com:5005/static/img/theme/theme1.jpg'},
-        {path: 'http://ppt.h3c.com:5005/static/img/theme/theme2.jpg'},
-        {path: 'http://ppt.h3c.com:5005/static/img/theme/theme3.jpg'}
+        {path: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/img/swiper-1.jpg'},
+        {path: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/img/swiper-2.jpg'},
+        {path: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/img/swiper-3.jpg'}
       ]
     }
   },
